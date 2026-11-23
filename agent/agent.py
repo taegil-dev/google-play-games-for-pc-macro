@@ -35,7 +35,6 @@ macro_lock = threading.Lock()
 state = 'idle'
 last_error = ''
 
-# screen_stop, screen_thread, screen_watching = start_screen_thread(shutdown)
 
 restart = threading.Event()
 
@@ -43,7 +42,6 @@ thread_var = SimpleNamespace(
     shutdown=shutdown,
     macro_stop=macro_stop,
     restart=restart,
-    # screen_watching=screen_watching
 )
 
 supabase = create_client(
@@ -367,8 +365,6 @@ def execute_on_local():
                 print(f'\n\r{datetime.datetime.now().strftime("%H:%M")} - ⛔ 매크로 중지')
                 stop_macro()
 
-    # screen_stop.set()
-    # screen_thread.join(timeout=2)
     stop_macro()
 
 
@@ -470,7 +466,6 @@ if __name__ == '__main__':
     def handle_signal(_signum, _frame):
         shutdown.set()
         macro_stop.set()
-        screen_stop.set()
         rg.stop_restart()
 
     # 시그널 등록

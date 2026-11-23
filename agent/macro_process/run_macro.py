@@ -240,19 +240,30 @@ def run_macro(thread_var, macro, region):
             name = condition_gold[0].get("name", "Unnamed Sequence")
             ignore = condition_gold[0].get("ignore", None)
 
-            # 골드는 숫자와 단위로 감지
-            gold = im.check_gold(region["GOLD_POS"])
-            if gold:
-                gold_str = f"{gold['value']}{gold['unit']}"
+            # 여러번 확인
+            check = False
+            for _ in range(2):
+                # 골드는 숫자와 단위로 감지
+                gold = im.check_gold(region["GOLD_POS"])
+                if gold:
+                    gold_str = f"{gold['value']}{gold['unit']}"
 
-                # 골드 비교는 문자열로 비교 "100az"
-                if im.compare_gold(gold_str, goal):
-                    # 실행한 시퀀스 제거
-                    sequence = condition_gold.pop(0)
-                    if not ignore_condition(name, ignore, region):
-                        print(f'{datetime.datetime.now().strftime("%H:%M")} - 🔔 현재 골드 {gold_str} : 목표 골드 {goal}')
-                        print(f'{datetime.datetime.now().strftime("%H:%M")} - ▶️ 시퀀스 {sequence["name"]} 실행')
-                        is_rebirth = run_sequence(thread_var, sequence['sequence'], region)
+                    # 골드 비교는 문자열로 비교 "100az"
+                    if im.compare_gold(gold_str, goal):
+                        check = True
+                    else:
+                        check = False
+                        break
+
+                thread_var.macro_stop.wait(0.5)
+
+            if check:
+                # 실행한 시퀀스 제거
+                sequence = condition_gold.pop(0)
+                if not ignore_condition(name, ignore, region):
+                    print(f'{datetime.datetime.now().strftime("%H:%M")} - 🔔 현재 골드 {gold_str} : 목표 골드 {goal}')
+                    print(f'{datetime.datetime.now().strftime("%H:%M")} - ▶️ 시퀀스 {sequence["name"]} 실행')
+                    is_rebirth = run_sequence(thread_var, sequence['sequence'], region)
 
         # 시간 조건 체크
         if condition_time:

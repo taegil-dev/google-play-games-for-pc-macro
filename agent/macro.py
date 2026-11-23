@@ -468,8 +468,8 @@ multi_macros = {
         ]
     }},
     "테스트": {"name": "테스트", "data": {
-        "empty": [
-            {"name": "테스트", "sequence": macros["테스트"]["data"]},
+        "gold": [
+            {"name": "테스트", "goal": "1an", "sequence": macros["테스트"]["data"]},
         ]
     }}
 }
