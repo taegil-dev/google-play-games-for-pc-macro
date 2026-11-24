@@ -389,12 +389,12 @@ macros = {
     "퀘스트 30 오픈": {"name": "퀘스트 30 오픈", "data": [
         {"name": "퀘스트 오픈 프리셋", "sequence": _sequence["퀘스트 오픈 프리셋 시퀀스"]},
         {"name": "딜레이", "sequence": [_custom_delay(5)]},
-        {"name": "퀘스트 골드 잠금", "sequence": _sequence["퀘스트 골드 잠금 시퀀스"]},
+        {"name": "등반 프리셋", "sequence": _sequence["등반 프리셋 시퀀스"]},
     ]},
     "퀘스트 30 레벨업": {"name": "퀘스트 30 레벨업", "data": [
         {"name": "퀘스트 확장 프리셋", "sequence": _sequence["퀘스트 확장 프리셋 시퀀스"]},
         {"name": "딜레이", "sequence": [_custom_delay(10)]},
-        {"name": "등반 프리셋", "sequence": _sequence["등반 프리셋 시퀀스"]},
+        {"name": "퀘스트 골드 잠금", "sequence": _sequence["퀘스트 골드 잠금 시퀀스"]},
     ]},
     "웨이브 8000": {"name": "8000 웨이브", "data": [
         {"name": "병사 레벨업 감소 프리셋", "sequence": _sequence["병사 레벨업 감소 프리셋 시퀀스"]},
