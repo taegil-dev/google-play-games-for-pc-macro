@@ -208,9 +208,7 @@ def run_macro(thread_var, macro, region):
         result = im.check_rebirth(image_matcher, region["REBIRTH_POS"])
         if result:
             is_rebirth, wave = rebirth_sequence(thread_var, region)
-            # 이어하기
-            if not is_rebirth:
-                continue
+            continue
 
         # 단일 매크로는 조건 매크로가 없으므로 바로 실행
         if is_normal_macro:
